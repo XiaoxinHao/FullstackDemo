@@ -1,0 +1,4 @@
+0:0:0:0:0:0:0:1 - - [05/Jul/2015:23:11:25 +0800] "GET /FullstackDemo/ HTTP/1.1" 200 1336 http-bio-8080-exec-1 455
+0:0:0:0:0:0:0:1 - - [05/Jul/2015:23:11:25 +0800] "GET /FullstackDemo/js/jquery-1.11.3.min.js HTTP/1.1" 304 - http-bio-8080-exec-4 13
+0:0:0:0:0:0:0:1 - - [05/Jul/2015:23:11:26 +0800] "GET /FullstackDemo/userController/user/2 HTTP/1.1" 200 307 http-bio-8080-exec-5 154
+0:0:0:0:0:0:0:1 - - [05/Jul/2015:23:11:28 +0800] "GET /FullstackDemo/userController/user/2 HTTP/1.1" 200 366 http-bio-8080-exec-6 20

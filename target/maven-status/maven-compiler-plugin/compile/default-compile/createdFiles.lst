@@ -1,0 +1,9 @@
+com\newidor\learn\service\UserServiceI.class
+com\newidor\learn\model\UserRole.class
+com\newidor\learn\model\Role.class
+com\newidor\learn\dao\UserRoleMapper.class
+com\newidor\learn\dao\UserMapper.class
+com\newidor\learn\model\User.class
+com\newidor\learn\service\UserServiceImpl.class
+com\newidor\learn\dao\RoleMapper.class
+com\newidor\learn\controller\UserController.class

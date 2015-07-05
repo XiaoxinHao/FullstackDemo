@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd 
+http://www.springframework.org/schema/context 
+http://www.springframework.org/schema/context/spring-context-3.0.xsd 
+http://www.springframework.org/schema/mvc 
+http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
+	<context:component-scan base-package="com.newidor.learn.controller" />
+
+
+	<mvc:annotation-driven />
+
+	<!-- 对模型视图名称的解析，即在模型视图名称添加前后缀 -->
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver"
+		p:prefix="/" p:suffix=".jsp" />
+
+	<!-- 拦截器 <mvc:interceptors> <bean class="com.core.mvc.MyInteceptor" /> </mvc:interceptors> -->
+
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"></bean>
+
+	<!-- 对静态资源文件的访问 方案一 （二选一） -->
+	<mvc:default-servlet-handler />
+
+
+	<!-- 启动Spring MVC的注解功能，完成请求和注解POJO的映射 -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+	</bean>
+	<!-- <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver"> 
+		<property name="order" value="1" /> <property name="mediaTypes"> <map> <entry 
+		key="json" value="text/json" /> <entry key="xml" value="text/xml" /> </map> 
+		</property> <property name="defaultViews"> <list> <bean class="net.zhepu.json.MappingJacksonJsonView" 
+		/> <bean name="jaxb2MarshallingView" class="org.springframework.web.servlet.view.xml.MarshallingView"> 
+		<property name="marshaller" ref="jaxbMarshall"></property> </bean> </list> 
+		</property> <property name="ignoreAcceptHeader" value="true" /> </bean> -->
+	<!-- JSON转换：避免IE执行AJAX时,返回JSON出现下载文件 -->
+
+	<bean
+		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+		<property name="order" value="1" />
+		<property name="mediaTypes">
+			<map>
+				<entry key="xml" value="application/xml" />
+				<entry key="json" value="application/json" />
+			</map>
+		</property>
+		<property name="defaultViews">
+			<list>
+				<bean
+					class="org.springframework.web.servlet.view.json.MappingJacksonJsonView" />
+				<bean class="org.springframework.web.servlet.view.xml.MarshallingView">
+					<constructor-arg ref="jaxbMarshaller" />
+				</bean>
+			</list>
+		</property>
+	</bean>
+
+
+
+	<!-- <bean id="mappingJacksonHttpMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter"> 
+		<property name="supportedMediaTypes"> <list> <value>text/html;charset=UTF-8</value> 
+		</list> </property> </bean> XML转换 <bean id="marshallingHttpMessageConverter" 
+		class="org.springframework.http.converter.xml.MarshallingHttpMessageConverter"> 
+		<constructor-arg ref="jaxbMarshaller" /> <property name="supportedMediaTypes" 
+		value="text/xml" /> </bean> -->
+	<bean id="jaxbMarshaller" class="org.springframework.oxm.jaxb.Jaxb2Marshaller">
+		<property name="classesToBeBound">
+			<list>
+				<value>com.newidor.learn.model.User</value>
+			</list>
+		</property>
+	</bean>
+
+
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="defaultEncoding">
+			<value>UTF-8</value>
+		</property>
+		<property name="maxUploadSize">
+			<value>32505856</value><!-- 上传文件大小限制为31M，31*1024*1024 -->
+		</property>
+		<property name="maxInMemorySize">
+			<value>4096</value>
+		</property>
+	</bean>
+
+</beans>
