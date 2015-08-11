@@ -18,8 +18,12 @@ public class Consumer {
 		final ZKConfig zkConfig = new ZKConfig();
 		zkConfig.zkConnect = "192.168.1.109:2181";
 		metaClientConfig.setZkConfig(zkConfig);
+		
+		
 		MessageSessionFactory sessionFactory = new MetaMessageSessionFactory(
 				metaClientConfig);
+		
+		
 		final String topic = "test";
 		final String group = "meta-example";
 

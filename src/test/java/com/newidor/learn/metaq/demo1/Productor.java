@@ -14,18 +14,17 @@ import com.taobao.metamorphosis.utils.ZkUtils.ZKConfig;
 public class Productor {
 
 	public static void main(String[] args) throws Exception {
-			final MetaClientConfig metaClientConfig = new MetaClientConfig();
-				final ZKConfig zkConfig = new ZKConfig();
-				zkConfig.zkConnect = "192.168.1.109:2181";
-			metaClientConfig.setZkConfig(zkConfig);
-			
+		final MetaClientConfig metaClientConfig = new MetaClientConfig();
+		final ZKConfig zkConfig = new ZKConfig();
+		zkConfig.zkConnect = "192.168.1.109:2181";
+		metaClientConfig.setZkConfig(zkConfig);
+
 		MessageSessionFactory sessionFactory = new MetaMessageSessionFactory(
 				metaClientConfig);
-			MessageProducer producer = sessionFactory.createProducer();
-			final String topic = "test";
-			producer.publish(topic);
-			
-			
+		MessageProducer producer = sessionFactory.createProducer();
+		final String topic = "testtopic";
+		producer.publish(topic);
+
 		BufferedReader reader = new BufferedReader(new InputStreamReader(
 				System.in));
 		String line = "Õ¯¬Á ±ø’(∞¢Ã√)";
