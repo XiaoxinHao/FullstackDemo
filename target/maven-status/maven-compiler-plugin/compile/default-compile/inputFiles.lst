@@ -1,9 +1,11 @@
 E:\Project\FullstackDemo\src\main\java\com\newidor\learn\dao\UserMapper.java
 E:\Project\FullstackDemo\src\main\java\com\newidor\learn\service\UserServiceImpl.java
 E:\Project\FullstackDemo\src\main\java\com\newidor\learn\model\Role.java
+E:\Project\FullstackDemo\src\main\java\com\newidor\learn\hessian\HelloServiceImpl.java
 E:\Project\FullstackDemo\src\main\java\com\newidor\learn\model\User.java
 E:\Project\FullstackDemo\src\main\java\com\newidor\learn\service\UserServiceI.java
 E:\Project\FullstackDemo\src\main\java\com\newidor\learn\dao\UserRoleMapper.java
 E:\Project\FullstackDemo\src\main\java\com\newidor\learn\model\UserRole.java
 E:\Project\FullstackDemo\src\main\java\com\newidor\learn\controller\UserController.java
+E:\Project\FullstackDemo\src\main\java\com\newidor\learn\hessian\HelloService.java
 E:\Project\FullstackDemo\src\main\java\com\newidor\learn\dao\RoleMapper.java

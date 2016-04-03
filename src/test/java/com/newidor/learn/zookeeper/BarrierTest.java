@@ -9,7 +9,11 @@ import org.apache.zookeeper.Watcher;
 import org.apache.zookeeper.ZooDefs.Ids;
 import org.apache.zookeeper.ZooKeeper;
 
-public class QueueTest {
+/**
+ * 
+ * 本测试的场景为：当/queue下存在3个节点时，创建/queue/start
+ */
+public class BarrierTest {
 
 	public static void doOne() throws Exception {
 		String host1 = "192.168.1.109:2181";
@@ -19,11 +23,11 @@ public class QueueTest {
 		joinQueue(zk, 2);
 		joinQueue(zk, 3);
 
-		// zk.close(); //close之后，临时节点会被删除
+		zk.close(); //close之后，临时节点会被删除
 	}
 
 	public static ZooKeeper connection(String host) throws IOException {
-		// 如果没有执行zk.close()而直接关闭进程，60s后，才能检测到临时节点被删除
+		// 心跳检测时间为60s
 		ZooKeeper zk = new ZooKeeper(host, 60000, new Watcher() {
 			// 监听/queue/start创建的事件
 			public void process(WatchedEvent event) {
